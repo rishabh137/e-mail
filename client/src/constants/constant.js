@@ -1,0 +1,1 @@
+export const mailLogo = 'https://www.svgrepo.com/show/14478/email.svg'
