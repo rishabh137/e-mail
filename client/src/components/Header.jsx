@@ -10,7 +10,7 @@ const StyledAppBar = styled(AppBar)({
 
 const SearchWrapper = styled(Box)({
     background: '#EAF1FB',
-    marginLeft: 80,
+    marginLeft: 100,
     borderRadius: 8,
     minWidth: 690,
     maxWidth: 720,
@@ -34,11 +34,11 @@ const IconWrapper = styled(Box)({
     }
 })
 
-const Header = () => {
+const Header = ({ toggleDrawer }) => {
     return (
         <StyledAppBar position="static">
             <Toolbar>
-                <MenuIcon color="action" />
+                <MenuIcon color="action" style={{ cursor: 'pointer' }} onClick={toggleDrawer} />
                 <EmailIcon style={{ color: "#ee2400", fontSize: 33, marginLeft: 15 }} />
                 <h2 style={{ color: "rgba(0, 0, 0, 0.54)", marginLeft: 10, fontWeight: 500 }}>Mail</h2>
 
