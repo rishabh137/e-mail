@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Dialog, Box, Typography, styled, InputBase, TextField, Button } from "@mui/material"
 import { Close, DeleteOutline } from "@mui/icons-material"
 
@@ -60,15 +61,9 @@ const SendButton = styled(Button)({
 })
 
 const ComposeMail = ({ dialogBox, setDialogBox }) => {
+    const [data, setData] = useState({ recipient: "", subject: "", body: "" })
 
-    const closeComposeMail = (e) => {
-        e.preventDefault()
-        setDialogBox(false)
-    }
 
-    const sendMail = () => {
-        setDialogBox(false)
-    }
 
     return (
         <Dialog
@@ -81,11 +76,11 @@ const ComposeMail = ({ dialogBox, setDialogBox }) => {
             </Header>
 
             <RecipientsWrapper>
-                <InputBase placeholder="Recipients" />
-                <InputBase placeholder="Subject" />
+                <InputBase placeholder="Recipients" name="recipient" onChange={(e) => onValueChange(e)} />
+                <InputBase placeholder="Subject" name="subject" onChange={(e) => onValueChange(e)} />
             </RecipientsWrapper>
 
-            <TextField
+            <TextField name="body"
                 multiline
                 rows={27}
                 sx={{
@@ -93,10 +88,11 @@ const ComposeMail = ({ dialogBox, setDialogBox }) => {
                         border: 'none'
                     }
                 }}
+                onChange={(e) => onValueChange(e)}
             />
 
             <Footer>
-                <SendButton onClick={() => sendMail()}>Send</SendButton>
+                <SendButton onClick={(e) => sendMail(e)}>Send</SendButton>
                 <DeleteOutline onClick={() => setDialogBox(false)} />
             </Footer>
         </Dialog>

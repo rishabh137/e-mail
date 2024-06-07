@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
+import { Logout } from "@mui/icons-material";
 
-const Main = () => {
+const Main = ({ username, isLogged }) => {
     const [openDrawer, setOpenDrawer] = useState(true);
 
     const toggleDrawer = () => {
@@ -15,7 +16,7 @@ const Main = () => {
 
     return (
         <div>
-            <Header toggleDrawer={toggleDrawer} />
+            <Header toggleDrawer={toggleDrawer} username={username} isLogged={isLogged} />
             <SideBar openDrawer={openDrawer} />
             <div>Display mail</div>
         </div>
