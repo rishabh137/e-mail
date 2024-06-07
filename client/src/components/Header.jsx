@@ -1,6 +1,9 @@
 import { AppBar, Toolbar, styled, InputBase, Box } from "@mui/material"
 import { Menu as MenuIcon, Search, Tune, HelpOutlineOutlined, SettingsOutlined, AppsOutlined, AccountCircleOutlined } from "@mui/icons-material"
 import EmailIcon from '@mui/icons-material/Email';
+import LogoutBtn from "./logout";
+import Signup from "./Signup";
+// import { NavLink } from "react-router-dom";
 
 // Apply CSS over AppBar component
 const StyledAppBar = styled(AppBar)({
@@ -34,7 +37,7 @@ const IconWrapper = styled(Box)({
     }
 })
 
-const Header = ({ toggleDrawer }) => {
+const Header = ({ toggleDrawer, username, isLogged }) => {
     return (
         <StyledAppBar position="static">
             <Toolbar>
@@ -54,6 +57,15 @@ const Header = ({ toggleDrawer }) => {
                     <AppsOutlined color="action" />
                     <AccountCircleOutlined color="action" />
                 </IconWrapper>
+                {
+                    !isLogged ?
+                        <Signup />
+                        :
+                        <>
+                            <a href="/"><LogoutBtn /></a>
+                            <p style={{ color: "#111" }}>{username.name}</p>
+                        </>
+                }
             </Toolbar>
         </StyledAppBar>
     )
