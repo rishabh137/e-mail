@@ -27,9 +27,6 @@ function App() {
         <Route exact path="/mail" element={<Main />} />
         <Route exact path="/logout" element={<Logout />} />
       </Routes>
-      {/* <Signup /> */}
-      {/* <Logout /> */}
-      {/* <Main /> */}
     </>
   );
 }

@@ -60,10 +60,40 @@ const SendButton = styled(Button)({
     fontSize: 15
 })
 
-const ComposeMail = ({ dialogBox, setDialogBox }) => {
+const ComposeMail = ({ dialogBox, setDialogBox, username }) => {
     const [data, setData] = useState({ recipient: "", subject: "", body: "" })
 
+    const config = {
+        Host: process.env.REACT_APP_EMAIL_HOST,
+        Username: process.env.REACT_APP_EMAIL_USERNAME,
+        Password: process.env.REACT_APP_EMAIL_PASSWORD,
+        Port: process.env.REACT_APP_EMAIL_PORT
+    }
 
+    const closeComposeMail = (e) => {
+        e.preventDefault()
+        setDialogBox(false)
+    }
+
+    const sendMail = (e) => {
+        e.preventDefault()
+        if (window.Email) {
+            window.Email.send({
+                ...config,
+                To: data.recipient,
+                From: username.email,
+                Subject: data.subject,
+                Body: data.body
+            }).then(
+                message => alert(message)
+            );
+        }
+        setDialogBox(false)
+    }
+
+    const onValueChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
 
     return (
         <Dialog

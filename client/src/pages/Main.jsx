@@ -17,7 +17,7 @@ const Main = ({ username, isLogged }) => {
     return (
         <div>
             <Header toggleDrawer={toggleDrawer} username={username} isLogged={isLogged} />
-            <SideBar openDrawer={openDrawer} />
+            <SideBar openDrawer={openDrawer} username={username} />
             <div>Display mail</div>
         </div>
     )
