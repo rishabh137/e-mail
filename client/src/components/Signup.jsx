@@ -5,7 +5,7 @@ import Main from "../pages/Main";
 import EmailIcon from '@mui/icons-material/Email';
 import "../App.css"
 
-const clientId = "988563869606-he9454qn5qus04sq86hh0f9nmm955ba2.apps.googleusercontent.com";
+const clientId = process.env.REACT_APP_CLIENT_ID
 
 const Signup = () => {
     const [username, setUsername] = useState({ name: "", email: "", imageURL: "" })
