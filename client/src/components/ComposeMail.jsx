@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Dialog, Box, Typography, styled, InputBase, TextField, Button } from "@mui/material"
 import { Close, DeleteOutline } from "@mui/icons-material"
+import useApi from "../hooks/useApi"
+import { API_URLS } from "../services/api.urls"
 
 const dialogStyle = {
     height: '90%',
@@ -62,6 +64,7 @@ const SendButton = styled(Button)({
 
 const ComposeMail = ({ dialogBox, setDialogBox, username }) => {
     const [data, setData] = useState({ recipient: "", subject: "", body: "" })
+    const sentEmailService = useApi(API_URLS.saveSentEmail)
 
     const config = {
         Host: process.env.REACT_APP_EMAIL_HOST,
@@ -88,6 +91,26 @@ const ComposeMail = ({ dialogBox, setDialogBox, username }) => {
                 message => alert(message)
             );
         }
+        const payload = {
+            to: data.recipient,
+            from: username.email,
+            subject: data.subject,
+            body: data.body,
+            date: new Date(),
+            image: username.imageURL,
+            name: username.name,
+            starred: false,
+            type: 'sent'
+        }
+
+        sentEmailService.call(payload)
+        if (!sentEmailService.error) {
+            setDialogBox(false)
+            setData({})
+        } else {
+
+        }
+
         setDialogBox(false)
     }
 
