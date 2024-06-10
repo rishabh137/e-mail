@@ -1,7 +1,7 @@
 import { Drawer } from '@mui/material'
 import SideBarContent from './SideBarContent'
 
-const SideBar = ({ openDrawer, username }) => {
+const SideBar = ({ openDrawer }) => {
     return (
         <Drawer
             anchor='left'
@@ -21,7 +21,7 @@ const SideBar = ({ openDrawer, username }) => {
                 }
             }}
         >
-            <SideBarContent username={username} />
+            <SideBarContent />
         </Drawer>
     )
 }

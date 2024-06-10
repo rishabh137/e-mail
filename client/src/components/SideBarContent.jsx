@@ -26,7 +26,7 @@ const Container = styled(Box)({
     }
 })
 
-const SideBarContent = ({ username }) => {
+const SideBarContent = () => {
     const [dialogBox, setDialogBox] = useState(false)
 
     return (
@@ -46,7 +46,7 @@ const SideBarContent = ({ username }) => {
                     ))
                 }
             </List>
-            <ComposeMail dialogBox={dialogBox} setDialogBox={setDialogBox} username={username} />
+            <ComposeMail dialogBox={dialogBox} setDialogBox={setDialogBox} />
         </Container>
     )
 }

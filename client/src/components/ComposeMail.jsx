@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Dialog, Box, Typography, styled, InputBase, TextField, Button } from "@mui/material"
 import { Close, DeleteOutline } from "@mui/icons-material"
 import useApi from "../hooks/useApi"
 import { API_URLS } from "../services/api.urls"
+import { UserContext } from "../App"
 
 const dialogStyle = {
     height: '90%',
@@ -62,7 +63,8 @@ const SendButton = styled(Button)({
     fontSize: 15
 })
 
-const ComposeMail = ({ dialogBox, setDialogBox, username }) => {
+const ComposeMail = ({ dialogBox, setDialogBox }) => {
+    const { username } = useContext(UserContext)
     const [data, setData] = useState({ recipient: "", subject: "", body: "" })
     const sentEmailService = useApi(API_URLS.saveSentEmail)
 

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
+import { Outlet } from "react-router-dom";
 
-const Main = ({ username, isLogged }) => {
+const Main = () => {
     const [openDrawer, setOpenDrawer] = useState(true);
 
     const toggleDrawer = () => {
@@ -14,11 +15,12 @@ const Main = ({ username, isLogged }) => {
     }
 
     return (
-        <div>
-            <Header toggleDrawer={toggleDrawer} username={username} isLogged={isLogged} />
-            <SideBar openDrawer={openDrawer} username={username} />
-            <div>Display mail</div>
-        </div>
+        <>
+            <Header toggleDrawer={toggleDrawer} />
+            <SideBar openDrawer={openDrawer} />
+            {/* Outlet renders child component */}
+            <Outlet context={{ openDrawer }} />
+        </>
     )
 }
 

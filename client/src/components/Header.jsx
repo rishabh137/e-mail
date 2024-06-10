@@ -2,8 +2,8 @@ import { AppBar, Toolbar, styled, InputBase, Box } from "@mui/material"
 import { Menu as MenuIcon, Search, Tune, HelpOutlineOutlined, SettingsOutlined, AppsOutlined, AccountCircleOutlined } from "@mui/icons-material"
 import EmailIcon from '@mui/icons-material/Email';
 import LogoutBtn from "./logout";
-import Signup from "./Signup";
-// import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../App";
 
 // Apply CSS over AppBar component
 const StyledAppBar = styled(AppBar)({
@@ -37,7 +37,8 @@ const IconWrapper = styled(Box)({
     }
 })
 
-const Header = ({ toggleDrawer, username, isLogged }) => {
+const Header = ({ toggleDrawer }) => {
+    const { username, isLogged } = useContext(UserContext)
     return (
         <StyledAppBar position="static">
             <Toolbar>
@@ -58,13 +59,14 @@ const Header = ({ toggleDrawer, username, isLogged }) => {
                     <AccountCircleOutlined color="action" />
                 </IconWrapper>
                 {
-                    !isLogged ?
-                        <Signup />
-                        :
+                    isLogged ?
                         <>
                             <a href="/"><LogoutBtn /></a>
                             <p style={{ color: "#111" }}>{username.name}</p>
                         </>
+                        :
+                        ""
+
                 }
             </Toolbar>
         </StyledAppBar>
